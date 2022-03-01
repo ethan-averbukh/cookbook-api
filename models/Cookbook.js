@@ -1,11 +1,13 @@
 //import connection
+const mongoose = require('../db/connection.js');
+const Schema = mongoose.Schema;
 
 
-/* Create Cookbook as new schema
-    Properties:
-    title (string),
-    yearPublished (integer),
-*/
+const cookbooksSchema = new Schema({
+    title: String,
+    yearPublished: 'Number'
+});
+
+module.exports = mongoose.model('Cookbook', cookbooksSchema);
 
 
-//export model
