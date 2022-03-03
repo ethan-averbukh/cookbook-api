@@ -1,5 +1,5 @@
 const express = require("express");
-const Cookbook = require("../models/Cookbook");
+const Cookbook = require("./../models/Cookbook");
 const router = express.Router();
 
 // Require the Cookbook controller.

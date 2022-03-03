@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
-const Author = require('../models/Author.js');
-const Cookbook = require('../models/Cookbook.js');
+const Author = require('./../models/Author.js');
+const Cookbook = require('./../models/Cookbook.js');
 
 
 //Write the route to list all authors
@@ -29,7 +29,7 @@ router.post('/', async (req,res)=>{
    
     const cookbook = await Cookbook.create({
         title: req.body.title,
-        yearPublished: 2022
+        yearPublished: req.body.yearPublished
     })
     const author = await Author.create({
         firstName: req.body.firstName,
@@ -57,6 +57,14 @@ router.put('/:id', async(req,res)=>{
     res.json({
         status: 200,
         data: updatedAuthor
+    })
+})
+
+router.delete('/remove/:id', async (req,res)=>{
+    const deletedAuthor = await Author.findByIdAndDelete(req.params.id);
+    res.json({
+        status: 200,
+        author: `Deleted author: ${deletedAuthor}`
     })
 })
 
