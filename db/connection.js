@@ -1,6 +1,11 @@
 const mongoose = require('mongoose')
-
-mongoose.connect('mongodb://localhost/cookbooks_db', { useNewUrlParser: true })
+let mongoURL = '';
+if(process.env.NODE_ENV === 'production'){
+    mongoURL= process.env.CKBK_URL;
+} else {
+    mongoURL = 'mongodb://localhost/cookbooks_db';
+}
+mongoose.connect(mongoURL, { useNewUrlParser: true })
 
 mongoose.Promise = Promise;
 
