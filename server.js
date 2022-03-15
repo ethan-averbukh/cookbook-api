@@ -17,5 +17,5 @@ app.use('/api/cookbooks/', cookbookRouter)
 const authorRouter = require('./controllers/authorRoutes')
 const { urlencoded } = require('express')
 app.use('/api/authors/', authorRouter)
-
-app.listen(PORT, () => console.log('Live and monitoring'))
+app.set("port", process.env.PORT || 8080)
+app.listen(app.get("port"), () => {console.log(`PORT: ${app.get("port")}`)})
