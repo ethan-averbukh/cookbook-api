@@ -4,7 +4,7 @@ const router = express.Router();
 
 // Require the Cookbook controller.
 
-// Write the route to list all cookbooks
+// route to list all cookbooks
 router.get("/", async (req, res) => {
   const cookbooks = await Cookbook.find({});
   res.json({
@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
     cookbooks: cookbooks,
   });
 });
-// Write the route to get cookbook by title
+//route to get cookbook by title
 router.get("/:bookTitle", async (req, res) => {
   const cookbooks = await Cookbook.find({ title: req.params.bookTitle });
   res.json({
@@ -20,7 +20,7 @@ router.get("/:bookTitle", async (req, res) => {
     cookbooks: cookbooks,
   });
 });
-// Write the route to get cookbook by year published
+//route to get cookbook by year published
 router.get('/year/:bookYearPublished', async (req, res) => {
   const numberYear = parseInt(req.params.bookYearPublished);
   const cookbooks = await Cookbook.find({
@@ -29,7 +29,7 @@ router.get('/year/:bookYearPublished', async (req, res) => {
   res.json(cookbooks);
 });
 
-// Write the route to create a cookbook
+//route to create a cookbook
 router.post('/', async (req, res) => {
   const cookbook = await Cookbook.create({
     title: req.body.title,
@@ -41,7 +41,7 @@ router.post('/', async (req, res) => {
   });
 });
 
-// Write the route to update a cookbook
+//route to update a cookbook
 router.put('/:bookId', async (req, res) => {
   const foundCookbook = await Cookbook.findByIdAndUpdate(
     req.params.bookId,
@@ -55,7 +55,7 @@ router.put('/:bookId', async (req, res) => {
   const cookbooks = await Cookbook.find({});
   res.json(cookbooks)
 });
-// Write the route to delete the cookbook by title
+//route to delete the cookbook by title
 router.delete('/:bookTitle', async (req,res)=>{
     const foundCookbook = await Cookbook.deleteOne({title: req.params.bookTitle});
     res.json({
