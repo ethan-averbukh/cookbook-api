@@ -1,11 +1,11 @@
-const express = require('express')
-const router = express.Router()
+const express = require('express');
+const router = express.Router();
 
 const Author = require('./../models/Author.js');
 const Cookbook = require('./../models/Cookbook.js');
 
 
-//Write the route to list all authors
+//route to list all authors
 router.get('/', async (req,res) =>{
     const authors = await Author.find({}).populate('cookbooks');
     res.json({
@@ -15,7 +15,7 @@ router.get('/', async (req,res) =>{
 })
 
 
-// Write the route to get authors by firstname
+//route to get authors by firstname
 router.get('/:firstName', async (req,res) =>{
     const author = req.body;
     const authors = await Author.find({firstName: req.params.firstName}).populate('cookbooks');
@@ -24,7 +24,7 @@ router.get('/:firstName', async (req,res) =>{
         data: authors
     });
 })
-//Write the route to create an author:
+//route to create an author:
 router.post('/', async (req,res)=>{
    
     const cookbook = await Cookbook.create({
@@ -41,7 +41,7 @@ router.post('/', async (req,res)=>{
         data: author
     });
 })
-// Write the route to update an author
+//route to update an author
 router.put('/:id', async(req,res)=>{
     const updatedAuthor = await Author.findByIdAndUpdate(
         req.params.id,
@@ -59,7 +59,7 @@ router.put('/:id', async(req,res)=>{
         data: updatedAuthor
     })
 })
-
+//route to delete an author
 router.delete('/remove/:id', async (req,res)=>{
     const deletedAuthor = await Author.findByIdAndDelete(req.params.id);
     res.json({
